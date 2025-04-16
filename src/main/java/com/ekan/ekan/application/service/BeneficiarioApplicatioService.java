@@ -1,5 +1,6 @@
 package com.ekan.ekan.application.service;
 
+import com.ekan.ekan.application.api.BeneficiarioListResponse;
 import com.ekan.ekan.application.api.BeneficiarioRequest;
 import com.ekan.ekan.application.api.BeneficiarioResponse;
 import com.ekan.ekan.application.repository.BeneficiarioRepository;
@@ -7,6 +8,8 @@ import com.ekan.ekan.domain.Beneficiario;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Log4j2
 @Service
@@ -19,5 +22,11 @@ public class BeneficiarioApplicatioService implements BeneficiarioService {
         Beneficiario beneficiario = beneficiarioRepository.salva(new Beneficiario(beneficiarioRequest));
         log.info("[finaliza] BeneficiarioApplicatioService - criaNovoBeneficiario");
         return new BeneficiarioResponse(beneficiario);
+    }
+
+    @Override
+    public List<BeneficiarioListResponse> listaTodosBeneficiario() {
+        List<Beneficiario> beneficiarios = beneficiarioRepository.listaTodosBeneficiarios();
+        return BeneficiarioListResponse.converte(beneficiarios);
     }
 }

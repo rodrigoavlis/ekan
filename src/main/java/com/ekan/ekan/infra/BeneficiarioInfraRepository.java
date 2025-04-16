@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @EnableMongoRepositories
@@ -19,5 +21,13 @@ public class BeneficiarioInfraRepository implements BeneficiarioRepository {
         Beneficiario novoBeneficiario = beneficiarioSpringDataJPARepository.save(beneficiario);
         log.info("[finaliza] BeneficiarioInfraRepository - salva");
         return beneficiario;
+    }
+
+    @Override
+    public List<Beneficiario> listaTodosBeneficiarios() {
+        log.info("[inicia] BeneficiarioInfraRepository - listaTodosBeneficiarios");
+        List<Beneficiario> beneficiarios = beneficiarioSpringDataJPARepository.findAll();
+        log.info("[finaliza] BeneficiarioInfraRepository - listaTodosBeneficiarios");
+        return beneficiarios;
     }
 }
