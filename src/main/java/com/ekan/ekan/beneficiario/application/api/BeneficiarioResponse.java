@@ -1,6 +1,6 @@
-package com.ekan.ekan.application.api;
+package com.ekan.ekan.beneficiario.application.api;
 
-import com.ekan.ekan.domain.Beneficiario;
+import com.ekan.ekan.beneficiario.domain.Beneficiario;
 import lombok.Getter;
 
 import java.util.UUID;

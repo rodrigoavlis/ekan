@@ -1,13 +1,14 @@
-package com.ekan.ekan.infra;
+package com.ekan.ekan.beneficiario.infra;
 
-import com.ekan.ekan.application.repository.BeneficiarioRepository;
-import com.ekan.ekan.domain.Beneficiario;
+import com.ekan.ekan.beneficiario.application.repository.BeneficiarioRepository;
+import com.ekan.ekan.beneficiario.domain.Beneficiario;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -29,5 +30,13 @@ public class BeneficiarioInfraRepository implements BeneficiarioRepository {
         List<Beneficiario> beneficiarios = beneficiarioSpringDataJPARepository.findAll();
         log.info("[finaliza] BeneficiarioInfraRepository - listaTodosBeneficiarios");
         return beneficiarios;
+    }
+
+    @Override
+    public void deletaBeneficiario(UUID idBeneficiario) {
+        log.info("[inicia] BeneficiarioInfraRepository - deletaBeneficiario");
+        beneficiarioSpringDataJPARepository.deleteById(idBeneficiario);
+        log.info("[finaliza] BeneficiarioInfraRepository - deletaBeneficiario");
+
     }
 }

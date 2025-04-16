@@ -1,10 +1,10 @@
-package com.ekan.ekan.application.api;
+package com.ekan.ekan.beneficiario.application.api;
 
-import com.ekan.ekan.domain.Documento;
-import com.ekan.ekan.domain.Sexo;
+import com.ekan.ekan.beneficiario.domain.Sexo;
 import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 
 @Value
 public class BeneficiarioRequest {
@@ -12,5 +12,5 @@ public class BeneficiarioRequest {
     private String nome;
     private String telefone;
     private Sexo sexo;
-    private Documento documento;
+    private LocalDate dataDeNascimento;
 }

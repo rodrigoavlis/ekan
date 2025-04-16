@@ -1,6 +1,6 @@
-package com.ekan.ekan.domain;
+package com.ekan.ekan.beneficiario.domain;
 
-import com.ekan.ekan.application.api.BeneficiarioRequest;
+import com.ekan.ekan.beneficiario.application.api.BeneficiarioRequest;
 import lombok.AccessLevel;
 
 import lombok.AllArgsConstructor;
@@ -10,12 +10,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Document(collection = "pessoas")
+@Document(collection = "Beneficiario")
 @Getter
 public class Beneficiario {
 
@@ -25,8 +26,7 @@ public class Beneficiario {
     private String nome;
     private String telefone;
     private Sexo sexo;
-    private Documento documento;
-
+    private LocalDate dataDeNascimento;
     private LocalDateTime dataInclusao;
     private LocalDateTime dataAtualizacao;
 
@@ -35,8 +35,7 @@ public class Beneficiario {
         this.nome = beneficiarioRequest.getNome();
         this.telefone = beneficiarioRequest.getTelefone();
         this.sexo = beneficiarioRequest.getSexo();
-        this.documento = new Documento(beneficiarioRequest.getDocumento());
+        this.dataDeNascimento = beneficiarioRequest.getDataDeNascimento();
         this.dataInclusao = LocalDateTime.now();
-        this.dataAtualizacao = LocalDateTime.now();
     }
 }

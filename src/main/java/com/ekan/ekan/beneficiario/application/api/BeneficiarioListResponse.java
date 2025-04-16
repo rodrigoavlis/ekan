@@ -1,10 +1,10 @@
-package com.ekan.ekan.application.api;
+package com.ekan.ekan.beneficiario.application.api;
 
-import com.ekan.ekan.domain.Beneficiario;
-import com.ekan.ekan.domain.Documento;
-import com.ekan.ekan.domain.Sexo;
+import com.ekan.ekan.beneficiario.domain.Beneficiario;
+import com.ekan.ekan.beneficiario.domain.Sexo;
 import lombok.Value;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ public class BeneficiarioListResponse {
     private String nome;
     private String telefone;
     private Sexo sexo;
-    private Documento documento;
+    private LocalDate dataDeNascimento;
     public static List<BeneficiarioListResponse> converte(List<Beneficiario> beneficiarios) {
         return beneficiarios.stream()
                 .map(BeneficiarioListResponse::new)
@@ -25,7 +25,7 @@ public class BeneficiarioListResponse {
         this.nome = beneficiario.getNome();
         this.telefone = beneficiario.getTelefone();
         this.sexo = beneficiario.getSexo();
-        this.documento = beneficiario.getDocumento();
+        this.dataDeNascimento = beneficiario.getDataDeNascimento();
     }
 
 
