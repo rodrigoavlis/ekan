@@ -16,7 +16,7 @@ public class BeneficiarioController implements BeneficiarioAPI {
     public BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest) {
         log.info("[inicia] BeneficiarioController - criaBeneficiario");
         BeneficiarioResponse criaBeneficiario = beneficiarioService.criaNovoBeneficiario(beneficiarioRequest);
-        log.info("[inicia] BeneficiarioController - criaBeneficiario");
+        log.info("[finaliza] BeneficiarioController - criaBeneficiario");
         return criaBeneficiario;
     }
 }
