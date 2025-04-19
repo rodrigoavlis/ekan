@@ -2,9 +2,11 @@ package com.ekan.ekan.beneficiario.infra;
 
 import com.ekan.ekan.beneficiario.application.repository.BeneficiarioRepository;
 import com.ekan.ekan.beneficiario.domain.Beneficiario;
+import com.ekan.ekan.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,5 +40,14 @@ public class BeneficiarioInfraRepository implements BeneficiarioRepository {
         beneficiarioSpringDataJPARepository.deleteById(idBeneficiario);
         log.info("[finaliza] BeneficiarioInfraRepository - deletaBeneficiario");
 
+    }
+
+    @Override
+    public Beneficiario buscaBeneficiarioPorId(UUID idBeneficiario) {
+        log.info("[inicia] BeneficiarioInfraRepository - buscaBeneficiarioPorId");
+        Beneficiario beneficiario = beneficiarioSpringDataJPARepository.findById(idBeneficiario)
+                .orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Beneficiario não encontrado"));
+        log.info("[finaliza] BeneficiarioInfraRepository - buscaBeneficiarioPorId");
+        return beneficiario;
     }
 }
